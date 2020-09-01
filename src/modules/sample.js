@@ -1,7 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import * as api from '../lib/api';
-import { startLoading, finishLoading } from './loading';
+import createRequestSaga from '../lib/createRequestSaga';
 
 
 // 액션 타입을 선언합니다.
@@ -63,6 +63,10 @@ function* getUsersSaga() {
   }
   yield put(finishLoading(GET_USERS));
 }
+
+
+const getPostSaga = createRequestSaga(GET_POST, api.getPost);
+const getUsersSaga = createRequestSaga(GET_USERS, api.getUsers);
 
 
 
